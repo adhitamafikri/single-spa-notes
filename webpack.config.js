@@ -1,22 +1,3 @@
-## 1. Setup
-### 1a. Setup Babel
-```yarn add --dev @babel/core @babel/preset-env @babel/preset-react @babel/plugin-syntax-dynamic-import @babel/plugin-proposal-object-rest-spread```
-
-[babelrc](https://github.com/adhitamafikri/single-spa-notes/docs/initialization/babelrc.png)
-
-### 1b. Setup Webpack
-install webpack-related dependencies
-```
-# Webpack core
-yarn add webpack webpack-dev-server webpack-cli --dev
-# Webpack plugins
-yarn add clean-webpack-plugin --dev
-# Webpack loaders
-yarn add style-loader css-loader html-loader babel-loader --dev
-```
-
-create a `webpack.config.js` in the root of the project with this content:
-```
 const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -65,12 +46,3 @@ module.exports = {
     historyApiFallback: true
   }
 };
-```
-
-### 1c. Add NPM Scripts
-```
-"scripts": {
-  "start": "webpack-dev-server --open",
-  "build": "webpack --config webpack.config.js -p"
-},
-```
