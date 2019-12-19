@@ -2,12 +2,12 @@ import React from 'react'
 import Layout from '@components/Layout'
 import Navbar from '@components/Navbar'
 
-function CreateNote() {
+function Profile() {
   return (
     <Layout navbar={<Navbar />}>
-      <h2>This is create note page</h2>
+      <h1>This is profile page</h1>
     </Layout>
   )
 }
 
-export default CreateNote
+export default Profile

@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import PrimaryTheme from '@themes/primary'
 
 const StyledMain = styled.main`
   padding-top: 48px;
@@ -11,11 +12,11 @@ function Layout({
   children,
 }) {
   return (
-    <>
+    <ThemeProvider theme={PrimaryTheme}>
       {navbar && navbar}
       <StyledMain>{children}</StyledMain>
       {navbar && footer}
-    </>
+    </ThemeProvider>
   )
 }
 

@@ -3,11 +3,11 @@ import { registerApplication, start } from 'single-spa'
 /**
  * Navbar {Global Component}
  */
-registerApplication(
-  'Navbar',
-  () => import('@components/Navbar').then(module => module.Navbar),
-  () => true,
-)
+// registerApplication(
+//   'Navbar',
+//   () => import('@components/Navbar').then(module => module.Navbar),
+//   () => true,
+// )
 
 /**
  * Home {Service}
@@ -34,6 +34,19 @@ registerApplication(
   // Activity function
   (location) => location.pathname === '/create' ||
     location.pathname.startsWith('/create')
+)
+
+/**
+ * Profile {Service}
+ */
+registerApplication(
+  // Service name
+  'Profile',
+  // Service component location
+  () => import('@services/Profile'),
+  // Activity function
+  (location) => location.pathname === '/profile' ||
+    location.pathname.startsWith('/profile')
 )
 
 start()

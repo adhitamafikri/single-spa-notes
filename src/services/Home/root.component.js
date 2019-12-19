@@ -1,10 +1,12 @@
 import React from 'react'
+import Layout from '@components/Layout'
+import Navbar from '@components/Navbar'
 
 function Home() {
   return (
-    <div>
+    <Layout navbar={<Navbar />}>
       <h1>This is homepage</h1>
-    </div>
+    </Layout>
   )
 }
 
