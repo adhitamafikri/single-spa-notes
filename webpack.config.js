@@ -35,8 +35,9 @@ module.exports = {
   resolve: {
     alias: {
       '@services': path.resolve(__dirname, 'src/services'),
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@themes': path.resolve(__dirname, 'src/themes')
+      '@themes': path.resolve(__dirname, 'src/themes'),
     },
     modules: [path.resolve(__dirname, 'node_modules')],
   },

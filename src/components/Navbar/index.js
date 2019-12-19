@@ -1,34 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Pane } from 'evergreen-ui'
+import { Pane, Link } from 'evergreen-ui'
 import { navigateToUrl } from 'single-spa'
 
 const StyledNavbar = styled(Pane)`
-  background: ${props => props.theme.primary};
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 48px;
-`
-
-const StyledAnchor = styled.a`
-  color: black;
+  background: ${props => props.theme.primary}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 function Navbar() {
   return (
-    <StyledNavbar>
-      <a href="/" onClick={navigateToUrl}>
-        Home
-      </a>
-      <a href="/create" onClick={navigateToUrl}>
-        Create Note
-      </a>
-      <a href="/profile" onClick={navigateToUrl}>
-        Profile
-      </a>
-    </StyledNavbar>
+      <StyledNavbar
+        width="100%"
+        height={48}
+        style={{ position: 'fixed', top: 0, left: 0 }}
+      >
+        <Link href="/" onClick={navigateToUrl} marginX={8}>
+          Home
+        </Link>
+        <Link href="/create" onClick={navigateToUrl} marginX={8}>
+          Create
+        </Link>
+        <Link href="/profile" onClick={navigateToUrl} marginX={8}>
+          Profile
+        </Link>
+      </StyledNavbar>
   )
 }
 
