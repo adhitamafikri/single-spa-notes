@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
@@ -34,6 +33,10 @@ module.exports = {
     fs: 'empty'
   },
   resolve: {
+    alias: {
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@components': path.resolve(__dirname, 'src/components')
+    },
     modules: [path.resolve(__dirname, 'node_modules')],
   },
   plugins: [
@@ -43,6 +46,7 @@ module.exports = {
   devtool: 'source-map',
   externals: [],
   devServer: {
-    historyApiFallback: true
+    port: 4008,
+    historyApiFallback: true    
   }
 };
