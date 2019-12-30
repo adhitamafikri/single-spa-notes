@@ -13,16 +13,24 @@ const dummyNotes = [
   },
 ]
 
-export const NotesContext = React.createContext({})
+export const NotesContext = React.createContext()
 
-function NotesProvider({ children }) {
-  const [notes, setNotes] = React.useState([ ...dummyNotes ])
+export function NotesProvider({ children }) {
+  const [notes, setNotes] = React.useState(dummyNotes)
+
+  const addNotes = (noteData) => {
+    const latestID = notes[notes.length - 1].id + 1
+    const nd = {
+      ...noteData,
+      id: latestID
+    }
+
+    setNotes(prevNotes => [...prevNotes, nd])
+  }
   
   return (
-    <NotesContext.Provider values={{ notes }}>
+    <NotesContext.Provider value={[ notes, addNotes ]}>
       {children}
     </NotesContext.Provider>
   )
 }
-
-export default NotesProvider
