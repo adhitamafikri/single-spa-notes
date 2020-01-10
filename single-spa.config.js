@@ -24,29 +24,28 @@ registerApplication(
 )
 
 /**
- * Create Note {Service}
+ * Notes {Service}
  */
 registerApplication(
   // Service name
-  'CreateNote',
+  'Notes',
   // Service component location
-  () => import('@services/CreateNote'),
+  () => import('@services/Notes'),
   // Activity function
-  (location) => location.pathname === '/create' ||
-    location.pathname.startsWith('/create')
+  (location) => location.pathname.startsWith('/notes')
 )
 
-/**
- * Profile {Service}
- */
-registerApplication(
-  // Service name
-  'Profile',
-  // Service component location
-  () => import('@services/Profile'),
-  // Activity function
-  (location) => location.pathname === '/profile' ||
-    location.pathname.startsWith('/profile')
-)
+// /**
+//  * Profile {Service}
+//  */
+// registerApplication(
+//   // Service name
+//   'Profile',
+//   // Service component location
+//   () => import('@services/Profile'),
+//   // Activity function
+//   (location) => location.pathname === '/profile' ||
+//     location.pathname.startsWith('/profile')
+// )
 
 start()

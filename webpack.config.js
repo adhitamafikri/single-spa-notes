@@ -1,5 +1,9 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HomeAliases = require('./src/services/Home/aliases')
+
+console.log(HomeAliases)
+console.log({ ...HomeAliases })
 module.exports = {
   mode: 'development',
   entry: {
@@ -38,6 +42,7 @@ module.exports = {
       '@contexts': path.resolve(__dirname, 'src/contexts'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@themes': path.resolve(__dirname, 'src/themes'),
+      ...HomeAliases
     },
     modules: [path.resolve(__dirname, 'node_modules')],
   },

@@ -1,16 +1,16 @@
 import React from "react"
 import ReactDOM from 'react-dom'
 import singleSPAReact from 'single-spa-react'
-import CreateNote from './root.component.js'
+import Notes from './root.component.js'
 
 function domElementGetter() {
-  return document.getElementById('CreateNote')
+  return document.getElementById('Notes')
 }
 
 const reactLifecycles = singleSPAReact({
   React,
   ReactDOM,
-  rootComponent: CreateNote,
+  rootComponent: Notes,
   domElementGetter
 })
 

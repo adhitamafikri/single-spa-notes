@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from 'react-dom'
+import 'regenerator-runtime'
 import singleSPAReact from 'single-spa-react'
 import Home from './root.component.js'
 

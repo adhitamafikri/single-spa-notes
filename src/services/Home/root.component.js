@@ -2,7 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Layout from '@components/Layout'
 import Navbar from '@components/Navbar'
-import { NotesContext, NotesProvider } from '@contexts/NotesContext'
+import Loading from '@components/Loading'
+import {
+  NotesProvider,
+  useNotesState,
+  useNotesDispatch,
+  fetchNotes,
+} from '@home-contexts/NotesContext'
 
 const Flex = styled.div`
   display: flex;
@@ -25,20 +31,38 @@ const Paper = styled.div`
 function NoteList({ notes }) {
   return notes.map((note) => {
     return (
-      <Paper key={note.id}>
-        {note.content}
+      <Paper key={note._id}>
+        <strong>{note.title}</strong>
+        <p>{note.content}</p>
       </Paper>
     )
   })
 }
 
 function Home() {
-  const [notes] = React.useContext(NotesContext)
+  const {
+    loading,
+    error,
+    errorMsg,
+    items
+  } = useNotesState()
+  const notesDispatch = useNotesDispatch()
+
+  React.useEffect(() => {
+    console.log('fetching notes')
+    fetchNotes(notesDispatch)
+  }, [fetchNotes])
 
   return (
     <Layout navbar={<Navbar />}>
       <Flex>
-        <NoteList notes={notes} />
+        {loading && <Loading />}
+        <Flex>
+          {!loading && items && <h1>Hey dude you have {items.length} notes</h1>}
+        </Flex>
+        <Flex>
+          {!loading && items && <NoteList notes={items} />}
+        </Flex>
       </Flex>
     </Layout>
   )

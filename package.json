@@ -8,10 +8,11 @@
     "build": "webpack --config webpack.config.js -p"
   },
   "dependencies": {
-    "evergreen-ui": "^4.21.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "regenerator-runtime": "^0.13.3",
+    "rxjs": "^6.5.4",
     "single-spa": "^4.4.1",
     "single-spa-react": "^2.11.0",
     "styled-components": "^4.4.1"
