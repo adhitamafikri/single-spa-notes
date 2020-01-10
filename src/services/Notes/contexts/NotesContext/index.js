@@ -5,6 +5,9 @@ import {
   FETCH_NOTES_BEGIN,
   FETCH_NOTES_SUCCESS,
   FETCH_NOTES_ERROR,
+  POST_NOTES_BEGIN,
+  POST_NOTES_SUCCESS,
+  POST_NOTES_ERROR,
 } from './actions'
 import { initialState, reducer } from './reducer'
 
@@ -61,6 +64,37 @@ export async function fetchNotes(dispatch) {
   } catch (error) {
     const payload = 'Something went wrong'
     dispatch({ type: FETCH_NOTES_ERROR, payload })
+    throw error
+  }
+}
+
+/** 
+ * @desc Post note to api
+ */
+export async function postNotes(dispatch, data) {
+  dispatch({ type: POST_NOTES_BEGIN })
+  try {
+    const URL = `${API_URL}/notes`
+    console.log('payload', payload)
+    const response = await fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify({ ...data }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (response) {
+      const json = await response.json()
+      const payload = json.result
+      dispatch({ type: POST_NOTES_SUCCESS, payload })
+    } else {
+      const payload = 'Failed to post'
+      dispatch({ type: POST_NOTES_ERROR, payload })
+      throw new Error('Failed to post')
+    }
+  } catch (error) {
+    const payload = 'Something went wrong'
+    dispatch({ type: POST_NOTES_ERROR, payload })
     throw error
   }
 }

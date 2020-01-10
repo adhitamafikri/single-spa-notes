@@ -11,7 +11,8 @@ import {
   NotesProvider,
   useNotesState,
   useNotesDispatch,
-  fetchNotes
+  fetchNotes,
+  postNotes,
 } from './contexts/NotesContext'
 
 const StyledInputText = styled.input`
@@ -39,7 +40,6 @@ function Notes() {
   const notesDispatch = useNotesDispatch()
 
   const [noteData, setNoteData] = React.useState({
-    id: 0,
     title: '',
     content: ''
   })
@@ -60,7 +60,9 @@ function Notes() {
     setNoteData({ ...nd })
   }
 
-  const saveNote = () => addNotes({...noteData})
+  const saveNote = () => {
+    console.log({ ...noteData })
+  }
 
   return (
     <Layout navbar={<Navbar />}>
@@ -88,7 +90,7 @@ function Notes() {
           placeholder="Content"
           onChange={onContentChange}
         />
-        <button type="button" onClick={saveNote}>
+        <button type="button" onClick={() => postNotes(notesDispatch, noteData)}>
           Save
         </button>
       </Pane>
