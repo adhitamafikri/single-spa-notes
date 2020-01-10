@@ -20,9 +20,9 @@ const StyledInputText = styled.input`
 `
 
 function NoteList({ notes }) {
-  return notes.map((note) => {
+  return notes.map((note, idx) => {
     return (
-      <Paper key={note._id} margin="0 8px">
+      <Paper key={idx} margin="0 8px">
         <strong>{note.title}</strong>
         <p>{note.content}</p>
       </Paper>
@@ -58,10 +58,6 @@ function Notes() {
     const nd =  { ...noteData }
     nd.content = e.target.value
     setNoteData({ ...nd })
-  }
-
-  const saveNote = () => {
-    console.log({ ...noteData })
   }
 
   return (

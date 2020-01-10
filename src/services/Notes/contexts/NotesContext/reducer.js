@@ -25,7 +25,9 @@ export function reducer (state, action) {
     case POST_NOTES_BEGIN:
       return { ...state, loading: true, error: false, errorMsg: '' }
     case POST_NOTES_SUCCESS:
-      return { ...state, loading: false, error: false, errorMsg: '' }
+      console.log({ ...state })
+      const newNotes = [...state.items, action.payload]
+      return { ...state, loading: false, error: false, errorMsg: '', items: [...newNotes] }
     case POST_NOTES_ERROR:
       return { ...state, loading: false, error: true, errorMsg: action.payload }
     default:

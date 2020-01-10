@@ -75,7 +75,6 @@ export async function postNotes(dispatch, data) {
   dispatch({ type: POST_NOTES_BEGIN })
   try {
     const URL = `${API_URL}/notes`
-    console.log('payload', payload)
     const response = await fetch(URL, {
       method: 'POST',
       body: JSON.stringify({ ...data }),
@@ -84,9 +83,7 @@ export async function postNotes(dispatch, data) {
       }
     })
     if (response) {
-      const json = await response.json()
-      const payload = json.result
-      dispatch({ type: POST_NOTES_SUCCESS, payload })
+      dispatch({ type: POST_NOTES_SUCCESS, payload: { ...data } })
     } else {
       const payload = 'Failed to post'
       dispatch({ type: POST_NOTES_ERROR, payload })
