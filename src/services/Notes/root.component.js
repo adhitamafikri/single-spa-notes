@@ -1,104 +1,33 @@
-import React from 'react'
-import styled from 'styled-components'
-import Layout from '@components/Layout'
-import Navbar from '@components/Navbar'
-import Loading from '@components/Loading'
-
-import Pane from './components/Pane'
-import Paper from './components/Paper'
-
+import React, { Suspense } from 'react'
 import {
-  NotesProvider,
-  useNotesState,
-  useNotesDispatch,
-  fetchNotes,
-  postNotes,
-} from './contexts/NotesContext'
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom'
 
-const StyledInputText = styled.input`
-  margin-bottom: 16px;
-`
+const ListPage = React.lazy(() => import('./pages/List'))
+const CreatePage = React.lazy(() => import('./pages/Create'))
 
-function NoteList({ notes }) {
-  return notes.map((note, idx) => {
-    return (
-      <Paper key={idx} margin="0 8px">
-        <strong>{note.title}</strong>
-        <p>{note.content}</p>
-      </Paper>
-    )
-  })
-}
-
-function Notes() {
-  const {
-    loading,
-    error, 
-    errorMsg,
-    items,
-  } = useNotesState()
-  const notesDispatch = useNotesDispatch()
-
-  const [noteData, setNoteData] = React.useState({
-    title: '',
-    content: ''
-  })
-
-  React.useEffect(() => {
-    fetchNotes(notesDispatch)
-  }, [fetchNotes])
-
-  const onTitleChange = (e) => {
-    const nd =  { ...noteData }
-    nd.title = e.target.value
-    setNoteData({ ...nd })
-  }
-
-  const onContentChange = (e) => {
-    const nd =  { ...noteData }
-    nd.content = e.target.value
-    setNoteData({ ...nd })
-  }
-
-  return (
-    <Layout navbar={<Navbar />}>
-      {loading && <Loading />}
-
-      <Pane
-        width="flex"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-        margin="16px 0"
-      >
-        {!loading && items && <NoteList notes={items} />}
-      </Pane>
-
-      <Pane width="100%">
-        <StyledInputText
-          value={noteData.title}
-          placeholder="Title"
-          onChange={onTitleChange}
-        />
-        <StyledInputText
-          value={noteData.content}
-          placeholder="Content"
-          onChange={onContentChange}
-        />
-        <button type="button" onClick={() => postNotes(notesDispatch, noteData)}>
-          Save
-        </button>
-      </Pane>
-    </Layout>
-  )
-}
+import { NotesProvider } from './contexts/NotesContext'
 
 function NotesWithContext() {
   return (
-    <NotesProvider>
-      <Notes />
-    </NotesProvider>
+    <BrowserRouter>
+      <Switch>
+        <NotesProvider>
+          <Route path="/notes" exact>
+            <Suspense fallback={<p>sdfsd</p>}>
+              <ListPage />
+            </Suspense>
+          </Route>
+          <Route path="/notes/create" exact>
+            <Suspense fallback={<p>sdfsd</p>}>
+              <CreatePage />
+            </Suspense>
+          </Route>
+        </NotesProvider>
+      </Switch>
+    </BrowserRouter>
   )
 }
 

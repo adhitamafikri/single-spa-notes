@@ -28,17 +28,6 @@ const Paper = styled.div`
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
 `
 
-function NoteList({ notes }) {
-  return notes.map((note) => {
-    return (
-      <Paper key={note._id}>
-        <strong>{note.title}</strong>
-        <p>{note.content}</p>
-      </Paper>
-    )
-  })
-}
-
 function Home() {
   const {
     loading,
@@ -49,7 +38,6 @@ function Home() {
   const notesDispatch = useNotesDispatch()
 
   React.useEffect(() => {
-    console.log('fetching notes')
     fetchNotes(notesDispatch)
   }, [fetchNotes])
 
@@ -59,9 +47,6 @@ function Home() {
         {loading && <Loading />}
         <Flex>
           {!loading && items && <h1>Hey dude you have {items.length} notes</h1>}
-        </Flex>
-        <Flex>
-          {!loading && items && <NoteList notes={items} />}
         </Flex>
       </Flex>
     </Layout>
