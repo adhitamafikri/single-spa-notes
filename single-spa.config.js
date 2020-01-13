@@ -35,17 +35,4 @@ registerApplication(
   (location) => location.pathname.startsWith('/notes')
 )
 
-// /**
-//  * Profile {Service}
-//  */
-// registerApplication(
-//   // Service name
-//   'Profile',
-//   // Service component location
-//   () => import('@services/Profile'),
-//   // Activity function
-//   (location) => location.pathname === '/profile' ||
-//     location.pathname.startsWith('/profile')
-// )
-
 start()
