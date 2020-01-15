@@ -1,9 +1,8 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HomeAliases = require('./src/services/Home/aliases')
 
-console.log(HomeAliases)
-console.log({ ...HomeAliases })
 module.exports = {
   mode: 'development',
   entry: {
@@ -11,9 +10,9 @@ module.exports = {
     'single-spa.config': './single-spa.config.js',
   },
   output: {
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, 'public/dist'),
+    publicPath: 'public/',
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -49,10 +48,20 @@ module.exports = {
   plugins: [
     // A webpack plugin to remove/clean the output folder before building
     new CleanWebpackPlugin(),
+    // Generate html
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'index.html')
+    })
   ],
   devtool: 'source-map',
   externals: [],
   devServer: {
+    index: path.resolve(__dirname, 'public/dist/index.html'),
+    contentBase: path.join(__dirname, 'public/dist'),
+    compress: false,
+    writeToDisk: true,
+    open: 'Google Chrome',
     port: 4008,
     historyApiFallback: true    
   }
