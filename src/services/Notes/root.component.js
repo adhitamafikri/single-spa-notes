@@ -1,12 +1,14 @@
 import React, { Suspense } from 'react'
+import ListPage from './pages/List'
+import CreatePage from './pages/Create'
 import {
   BrowserRouter,
   Switch,
   Route,
 } from 'react-router-dom'
 
-const ListPage = React.lazy(() => import('./pages/List'))
-const CreatePage = React.lazy(() => import('./pages/Create'))
+// const ListPage = React.lazy(() => import('./pages/List'))
+// const CreatePage = React.lazy(() => import('./pages/Create'))
 
 import { NotesProvider } from './contexts/NotesContext'
 
@@ -15,7 +17,7 @@ function NotesWithContext() {
     <BrowserRouter>
       <Switch>
         <NotesProvider>
-          <Route path="/notes" exact>
+          {/* <Route path="/notes" exact>
             <Suspense fallback={<p>sdfsd</p>}>
               <ListPage />
             </Suspense>
@@ -24,6 +26,12 @@ function NotesWithContext() {
             <Suspense fallback={<p>sdfsd</p>}>
               <CreatePage />
             </Suspense>
+          </Route> */}
+          <Route path="/notes" exact>
+            <ListPage />
+          </Route>
+          <Route path="/notes/create" exact>
+            <CreatePage />
           </Route>
         </NotesProvider>
       </Switch>

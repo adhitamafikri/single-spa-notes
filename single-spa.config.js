@@ -32,7 +32,8 @@ registerApplication(
   // Service component location
   () => import('@services/Notes'),
   // Activity function
-  (location) => location.pathname.startsWith('/notes')
+  (location) => location.pathname.startsWith('/notes') ||
+    location.pathname === '/notes/create'
 )
 
 start()

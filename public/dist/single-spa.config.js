@@ -182,7 +182,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "public/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
@@ -10086,7 +10086,7 @@ __webpack_require__.r(__webpack_exports__);
 Object(single_spa__WEBPACK_IMPORTED_MODULE_0__["registerApplication"])( // Service name
 'Home', // Service component location
 function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! @services/Home */ "./src/services/Home/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! @services/Home */ "./src/services/Home/index.js"));
 }, // Activity function
 function (location) {
   return location.pathname === '' || location.pathname === '/' || location.pathname.startsWith('/home');
@@ -10098,10 +10098,10 @@ function (location) {
 Object(single_spa__WEBPACK_IMPORTED_MODULE_0__["registerApplication"])( // Service name
 'Notes', // Service component location
 function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! @services/Notes */ "./src/services/Notes/index.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! @services/Notes */ "./src/services/Notes/index.js"));
 }, // Activity function
 function (location) {
-  return location.pathname.startsWith('/notes');
+  return location.pathname.startsWith('/notes') || location.pathname === '/notes/create';
 });
 Object(single_spa__WEBPACK_IMPORTED_MODULE_0__["start"])();
 
