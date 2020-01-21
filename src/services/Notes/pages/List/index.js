@@ -59,7 +59,7 @@ function List() {
       </Pane>
 
       <Pane width="100%" display="flex" justifyContent="center">
-        <Link to="/notes/create">
+        <Link to="/create">
           <button type="button">
             Create New Note
           </button>

@@ -7,12 +7,12 @@ module.exports = {
   mode: 'development',
   entry: {
     // Set the single-spa config as the project entry point
-    'single-spa.config': './single-spa.config.js',
+    'single-spa.config': path.resolve(__dirname, 'single-spa.config.js'),
   },
   output: {
     path: path.resolve(__dirname, 'public/dist'),
-    // publicPath: 'public/dist',
-    filename: '[name].js',
+    filename: '[name].[contentHash].js',
+    chunkFilename: '[name].[contentHash].js',
   },
   module: {
     rules: [

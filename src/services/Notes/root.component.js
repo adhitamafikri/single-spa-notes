@@ -1,38 +1,34 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ListPage from './pages/List'
 import CreatePage from './pages/Create'
 import {
   BrowserRouter,
+  HashRouter,
   Switch,
   Route,
 } from 'react-router-dom'
 
-// const ListPage = React.lazy(() => import('./pages/List'))
-// const CreatePage = React.lazy(() => import('./pages/Create'))
-
+import routeStack from './routes'
 import { NotesProvider } from './contexts/NotesContext'
+
+function RenderRouteStack() {
+  return routeStack.map((route, idx) => {
+    return (
+      <Route key={idx} path={route.path} exact={route.exact}>
+        {route.component}
+      </Route>
+    )
+  })
+}
 
 function NotesWithContext() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/notes">
       <Switch>
         <NotesProvider>
-          {/* <Route path="/notes" exact>
-            <Suspense fallback={<p>sdfsd</p>}>
-              <ListPage />
-            </Suspense>
-          </Route>
-          <Route path="/notes/create" exact>
-            <Suspense fallback={<p>sdfsd</p>}>
-              <CreatePage />
-            </Suspense>
-          </Route> */}
-          <Route path="/notes" exact>
-            <ListPage />
-          </Route>
-          <Route path="/notes/create" exact>
-            <CreatePage />
-          </Route>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <RenderRouteStack />
+          </React.Suspense>
         </NotesProvider>
       </Switch>
     </BrowserRouter>

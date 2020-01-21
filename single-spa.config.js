@@ -16,7 +16,7 @@ registerApplication(
   // Service name
   'Home',
   // Service component location
-  () => import('@services/Home'),
+  () => import( /* webpackChunkName: 'HomeService' */ '@services/Home'),
   // Activity function
   (location) => location.pathname === '' ||
     location.pathname === '/' ||
@@ -30,7 +30,7 @@ registerApplication(
   // Service name
   'Notes',
   // Service component location
-  () => import('@services/Notes'),
+  () => import(/* webpackChunkName: 'NotesService' */ '@services/Notes'),
   // Activity function
   (location) => location.pathname.startsWith('/notes') ||
     location.pathname === '/notes/create'
