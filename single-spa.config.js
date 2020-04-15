@@ -32,8 +32,7 @@ registerApplication(
   // Service component location
   () => import(/* webpackChunkName: 'NotesService' */ '@services/Notes'),
   // Activity function
-  (location) => location.pathname.startsWith('/notes') ||
-    location.pathname === '/notes/create'
+  (location) => location.pathname.startsWith('/notes')
 )
 
 start()
